@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- 연결된 db받아올 import 내용 클래스 -->
 <%@	page import ="java.util.List"  %>
 <%@ page import ="com.javaex.vo.PersonVo" %>
 
 
 <%
-	/*자바 연결 db받아오기*/
+	/*자바 연결 db받아오기 (컨트롤러의 attribute 받아오기임)*/
 	List<PersonVo> personList = (List<PersonVo>)request.getAttribute("personList");//형변환필요하다
 	System.out.println(personList);
 %>

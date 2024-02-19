@@ -21,7 +21,7 @@ public class PersonDao {
 	
 	//등록
 	public int personInsert(PersonVo personVo) {
-		int count=-1;
+		int count=-1;//결과내용 출력을 위한 변수 지정
 		
 		// 0. import java.sql.*;
 		Connection conn = null;
@@ -36,18 +36,21 @@ public class PersonDao {
 			conn = DriverManager.getConnection(url, "phone", "phone");
 			
 		// 3. SQL문 준비 / 바인딩 / 실행
+			//sql문 준비
 			String query ="";
 			query+=" insert into person ";
 			query+=" value(null, ?, ?, ?) ";
 			
+			//바인딩
 			pstmt =conn.prepareStatement(query);
 			pstmt.setString(1, personVo.getName());
 			pstmt.setString(2, personVo.getHp());
 			pstmt.setString(3, personVo.getCompany());
 			
+			//실행
 			count = pstmt.executeUpdate();
 			
-		// 4.결과처리
+		// 4.결과처리(콘솔에서 보기위해)
 			System.out.println(count+"건 등록되었습니다");
 			
 		} catch (ClassNotFoundException e) {
@@ -70,7 +73,7 @@ public class PersonDao {
 				System.out.println("error:" + e);
 			}
 		}
-		return count;
+		return count;//정상 처리시 처리된 카운트 값 출력
 	}
 	
 	public List<PersonVo> personSelect() {
@@ -98,9 +101,10 @@ public class PersonDao {
 			
 			pstmt=conn.prepareStatement(query);
 			
+			//리스트출력은 executeQuery
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			while(rs.next()) {// rs.next()는 출력될 값이 없으면 false로 바뀐다
 				int personId = rs.getInt("person_id");
 				String name = rs.getString("name");
 				String hp = rs.getString("hp");

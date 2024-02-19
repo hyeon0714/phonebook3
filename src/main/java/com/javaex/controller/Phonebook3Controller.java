@@ -48,24 +48,24 @@ public class Phonebook3Controller extends HttpServlet {
 			
 			System.out.println(name+hp+company);
 			
-			//Vo로 묶기
+			//Vo로 묶기 1번
 			PersonVo pv=new PersonVo(name, hp, company);
 			System.out.println(pv.toString());
 			
-			//db관련업무
+			//db관련업무 2번
 			PersonDao phoneDao = new PersonDao();
 			
-			//db에 저장
+			//db에 저장(dao의 insert사용)
 			phoneDao.personInsert(pv);
 			
-			//db에서 전체 데이터 가져오기
+			//db에서 전체 데이터 가져오기 4번
 			List<PersonVo> personList = phoneDao.personSelect();
 			System.out.println(personList);
 			
-			//가져온 db에서 html로 보내기
+			//가져온 db에서 html로 보내기 5번번(리스트 사용시 html파일로 보내줄때) 
 			request.setAttribute("personList", personList);
 			
-			//포워드(html에 그리기 명령)
+			//포워드(html에 그리기 명령 (db내용 보내고 페이지 html로 이동))
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
 		}
