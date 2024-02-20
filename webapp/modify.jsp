@@ -9,7 +9,7 @@
 <body>
 	<h1>전화번호부</h1>
 	
-	<h2>등록폼</h2>
+	<h2>수정폼</h2>
 	
 	<p>	전화번호를 등록하려면<br>
 		아래 항목을 기입하고 "등록"버튼을 클릭하세요
@@ -30,9 +30,9 @@
 			<input type="text" name="company" value="">
 		</div>
 		
-		<input type="hidden" name="action" value="insert">
+		<input type="hidden" name="action" value="modify2">
 		<!-- action을 주기위해 보이지않는 값을 넣어준다 -->
-		<button type="submit">등록</button>
+		<button type="submit">수정</button>
 	</form>
 	
 	<a href="">리스트 바로가기</a>

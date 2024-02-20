@@ -44,10 +44,20 @@
 			<td>회사(company)</td>
 			<td><%=personList.get(i).getCompany() %></td>
 		</tr>
+		<tr>
+			<td>
+				<a href="/phonebook3/pbc?action=delete&no=<%=personList.get(i).getPersonId()%>">[삭제]</a>
+			</td>
+			<td>
+				<a href="/phonebook3/pbc?action=modify&no=<%=personList.get(i).getPersonId()%>">[수정]</a>
+			</td>
+		</tr>
 	
 	</table>
 	<%
 	}
 	%>
+	
+	
 </body>
 </html>
