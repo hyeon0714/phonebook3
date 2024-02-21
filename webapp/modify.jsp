@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ page import = "com.javaex.controller.Phonebook3Controller" %>
+    
+    <% int a=(int)request.getAttribute("num"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +35,7 @@
 			<input type="text" name="company" value="">
 		</div>
 		
+		<input type="hidden" name="no" value="<%=a%>">
 		<input type="hidden" name="action" value="modify2">
 		<!-- action을 주기위해 보이지않는 값을 넣어준다 -->
 		<button type="submit">수정</button>

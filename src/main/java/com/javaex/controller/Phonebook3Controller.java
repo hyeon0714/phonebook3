@@ -24,7 +24,6 @@ public class Phonebook3Controller extends HttpServlet {
 	//게터세터 메소드 없음
 	
 	//메소드 일반
-	int num=-1;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -117,9 +116,10 @@ public class Phonebook3Controller extends HttpServlet {
 		}else if("modify".equals(action)) {
 			System.out.println("modify");
 			int no=Integer.parseInt(request.getParameter("no"));
-			num=no;
 			
-			System.out.println(num);
+			int num=no;
+			
+			request.setAttribute("num", num);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/modify.jsp");
 			rd.forward(request, response);
@@ -128,14 +128,14 @@ public class Phonebook3Controller extends HttpServlet {
 			String name = request.getParameter("name");
 			String hp = request.getParameter("hp");
 			String company = request.getParameter("company");
+			int no = Integer.parseInt(request.getParameter("no"));
 			
-			PersonVo pv=new PersonVo(num, name, hp, company);
 			
 			PersonDao phoneDao = new PersonDao();
 			
-			phoneDao.personModify(num, name, hp, company);
+			phoneDao.personModify(no, name, hp, company);
 			
-			System.out.println(num);
+			
 			
 			response.sendRedirect("/phonebook3/pbc?action=list");
 		}
