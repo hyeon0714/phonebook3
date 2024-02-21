@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javaex.Webutil.WebUtil;
 import com.javaex.dao.PersonDao;
 import com.javaex.vo.PersonVo;
 
@@ -66,21 +67,7 @@ public class Phonebook3Controller extends HttpServlet {
 			request.setAttribute("personList", personList);
 			
 			//포워드(html에 그리기 명령 (db내용 보내고 페이지 html로 이동))
-			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
-			rd.forward(request, response);
-			
-		}else if("list".equals(action)) {
-			
-			//db관련업무 2번
-			PersonDao phoneDao = new PersonDao();
-			
-			//db에서 전체 데이터 가져오기 4번
-			List<PersonVo> personList = phoneDao.personSelect();
-			
-			//가져온 db에서 html로 보내기 5번번(리스트 사용시 html파일로 보내줄때) 
-			request.setAttribute("personList", personList);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
 			rd.forward(request, response);
 			
 		}else if("insert2".equals(action)) {
@@ -137,7 +124,33 @@ public class Phonebook3Controller extends HttpServlet {
 			
 			
 			
+			//WebUtil에서 메소드를 주고 적용시켰다
+			
+			WebUtil.redir("/phonebook3/pbc?action=list", request, response);
+			//메소드에 스태틱을 줘서 WebUtil util = new WebUtil(); 없이도 바로 사용가능하다
+			
+			/*
 			response.sendRedirect("/phonebook3/pbc?action=list");
+			*/
+		}else {
+			//db관련업무 2번
+			PersonDao phoneDao = new PersonDao();
+			
+			//db에서 전체 데이터 가져오기 4번
+			List<PersonVo> personList = phoneDao.personSelect();
+			
+			//가져온 db에서 html로 보내기 5번번(리스트 사용시 html파일로 보내줄때) 
+			request.setAttribute("personList", personList);
+			
+			
+			//WebUtil에서 메소드를 주고 적용시켰다
+			
+			WebUtil.forward("/WEB-INF/list.jsp", request, response);
+			
+			/*
+			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+			rd.forward(request, response);
+			*/
 		}
 		
 	}

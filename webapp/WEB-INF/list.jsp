@@ -11,7 +11,7 @@
 	List<PersonVo> personList = (List<PersonVo>)request.getAttribute("personList");//형변환필요하다
 	System.out.println(personList);
 %>
-    
+    <!-- WEB-INF폴더 안에 있으면 model2방식으로 외부에서 접근시 바로 접근이 안된다(컨트롤러로만 접근가능)-->
 <!DOCTYPE html>
 <html>
 <head>
