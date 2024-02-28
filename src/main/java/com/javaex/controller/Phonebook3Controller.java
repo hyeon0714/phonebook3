@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javaex.Webutil.WebUtil;
 import com.javaex.dao.PersonDao;
 import com.javaex.vo.PersonVo;
+import com.javaex.webutil.WebUtil;
 
 
 @WebServlet("/pbc")
